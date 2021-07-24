@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+RAM = 1024
+CPU = 1
+IP = "10.0.0.10"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "dirane/nginx"
+  config.vm.box_version = "1.0"
+  config.vm.hostname = "nginx"
+  config.vm.network "private_network", ip: IP
+  config.vm.synced_folder "static-website-example/", "/usr/share/nginx/html/"
+  config.vm.provider "virtualbox" do |v|
+    v.memory = RAM
+    v.cpus = CPU
+  end
+end
